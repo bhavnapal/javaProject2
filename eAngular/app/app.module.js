@@ -1,7 +1,11 @@
-var app=angular.module("collaborationApp",
-[
-    'ngRoute',
-    'BasicModule',
-    'UserModule',
-    'AuthenticateModule'
- ]);
+var app = angular.module("chatapp",[
+
+'ngRoute',
+'BasicModule',
+'PageModule',
+'RegisterModule',
+'BlogModule',
+'ForumModule',
+'JobModule',
+'AdminModule'
+]);
