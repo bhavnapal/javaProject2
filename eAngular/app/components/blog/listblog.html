@@ -1,0 +1,20 @@
+
+<body>
+<br>
+<br>
+<div>
+<div  class="container" ng-controller="BlogController as ctrl"  name="listblog">
+
+
+Welcome to Blog
+
+
+{{ctrl.blogs}}
+
+<a href = "#"  ng-click="ctrl.getSelectedBlog(blog.id)"> <br>Title  {{blog.blogName}}&nbsp;&nbsp; -  Written By:  {{blog.userId}}&nbsp;&nbsp;</a>
+</div>
+
+</div>
+</div>
+</div>
+</body>

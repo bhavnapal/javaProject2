@@ -33,7 +33,7 @@ public class JobController {
 	/*mapping to get the particular job with id*/
 	@RequestMapping("/get/{id}")
 	public ResponseEntity<Job> get(@PathVariable int id) {
-		System.out.println("-------------------------------------reached into controller--------------------------------------------");
+		
 		return new ResponseEntity<Job>(jobDao.getJob(id), HttpStatus.OK);
 	}
 	
@@ -45,9 +45,8 @@ public class JobController {
 	/*mapping to add job to job table*/
 	@PostMapping("/insert")
 	public ResponseEntity<DomainResponse> post(@RequestBody Job job){
-		System.out.println("-------------------------------------reached into controller1--------------------------------------------");
+		
 		jobDao.addJob(job);
-		System.out.println("-------------------------------job adeed successfully--------------");
 		return new ResponseEntity<DomainResponse> (new DomainResponse("job table recieved the data",100), HttpStatus.OK);
 	}
 	

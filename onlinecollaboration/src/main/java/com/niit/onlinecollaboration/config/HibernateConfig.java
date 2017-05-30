@@ -26,7 +26,7 @@ public class HibernateConfig {
 	
 	public final static String DATABASE_URL="jdbc:h2:tcp://localhost/~/test";
 	public final static String DATABASE_DRIVER="org.h2.Driver";
-	public final static String DATABASE_DIALECT="org.hibernate.dialect.h2Dialect";
+	public final static String DATABASE_DIALECT="org.hibernate.dialect.H2Dialect";
 	public final static String DATABASE_USERNAME="sa";
 	public final static String DATABASE_PASSWORD="";
 	

@@ -24,15 +24,14 @@ public class UserController {
 
 	@RequestMapping("/get/{id}")
 	public ResponseEntity<User_Detail> getUserById(@PathVariable int id) {
-		System.out.println("-------------------------------------reached into controller--------------------------------------------");
+	
 		return new ResponseEntity<User_Detail>(userDao.getUserDetail(id), HttpStatus.OK);
 	}
 
 	@PostMapping("/insert")
 	public ResponseEntity<DomainResponse> post(@RequestBody User_Detail user){
-		System.out.println("-------------------------------------reached into controller1--------------------------------------------");
+		
 		userDao.add(user);
-		System.out.println("-------------------------------user adeed successfully--------------");
 		return new ResponseEntity<DomainResponse> (new DomainResponse("user recieved the data",100), HttpStatus.OK);
 	}
 	

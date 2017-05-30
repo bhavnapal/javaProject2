@@ -1,11 +1,14 @@
 {
-  "name": "eAngular",
-  "homepage": "https://github.com/bhavnapal/javaProject2",
+  "name": "eallainz",
+  "homepage": "https://github.com/chiragsingla8802/online-collaboration",
   "authors": [
-    "bhavnapal <bhavnapal1995@gmail.com>"
+    "chiragsingla8802 <chirag.singla8802@gmail.com>"
   ],
-  "description": "first collaboration project",
-  "main": "",
+  "description": "this is an angular application",
+  "main": "index.html",
+  "keywords": [
+    "online-collaboration"
+  ],
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -18,7 +21,6 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "angular": "^1.6.3",
-    "angular-route": "^1.6.3",
-    "angular-cookies": "^1.6.4"
+    "angular-route": "^1.6.3"
   }
 }

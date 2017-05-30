@@ -1,0 +1,130 @@
+<body>
+	<div name="updateuser">
+		<div class="generic-container" ng-controller="UserController as ctrl">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="lead">My Profile </span>
+				</div>
+				<div class="formcontainer">
+					<form ng-submit="ctrl.update()" name="myForm" class="form-horizontal">
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="userId">ID</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="currentUser.userId" id="userId" class="userId form-control input-sm" placeholder="Enter your ID"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="name">Name</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="currentUser.name" id="name" class="name form-control input-sm" placeholder="Enter your Name"
+										required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="password">Password</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="currentUser.password" id="password" class="password form-control input-sm" placeholder="Enter your password"
+										required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="email">Email</label>
+								<div class="col-md-7">
+									<input type="email" ng-model="currentUser.email" id="email" class="email form-control input-sm" placeholder="Enter your Email"
+										required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="phoneNo">phoneNo</label>
+								<div class="col-md-7">
+									<input type="tel" ng-model="currentUser.phoneNo" id="phoneNo" class="phoneNo form-control input-sm" placeholder="Enter your contact number"
+										required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="city">city</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="currentUser.city" id="city" class="city form-control input-sm" placeholder="Enter your city"
+										required />
+
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="state">State</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="currentUser.state" id="state" class="state form-control input-sm" placeholder="Enter your State"
+										required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="address">Address</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="currentUser.address" width="100" height="50" id="address" class="form-control input-sm" placeholder="Enter your Address."
+									/>
+								</div>
+							</div>
+						</div>
+
+						<!--<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="role">Role</label>
+								<div class="col-md-7">
+									<input type="text" ng-model= "currentUser.role"   id="role"
+										class="role form-control input-sm"
+										placeholder="Enter your role" required />
+
+								</div>
+							</div>
+						</div>-->
+
+
+
+						<div class="row">
+							<div class="form-actions floatRight">
+								<input type="submit" value="Update" class="btn btn-primary btn-sm">
+
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+
+</html>

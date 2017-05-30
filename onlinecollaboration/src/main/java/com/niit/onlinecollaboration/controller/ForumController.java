@@ -37,16 +37,15 @@ public class ForumController {
 	/*mapping to get the particular forum with id*/
 	@RequestMapping("/get/{id}")
 	public ResponseEntity<Forum> get(@PathVariable int id) {
-		System.out.println("-------------------------------------reached into controller--------------------------------------------");
+		
 		return new ResponseEntity<Forum>(forumDao.getForum(id), HttpStatus.OK);
 	}
 	
 	/*mapping to add forum to forum table*/
 	@PostMapping("/insert")
 	public ResponseEntity<DomainResponse> post(@RequestBody Forum forum){
-		System.out.println("-------------------------------------reached into controller1--------------------------------------------");
+		
 		forumDao.addForum(forum);
-		System.out.println("-------------------------------job adeed successfully--------------");
 		return new ResponseEntity<DomainResponse> (new DomainResponse("forum table recieved the data",100), HttpStatus.OK);
 	}
 	

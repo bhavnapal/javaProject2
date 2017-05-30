@@ -38,16 +38,15 @@ public class BlogController {
 	/*mapping to get the particular blog with id*/
 	@RequestMapping("/get/{id}")
 	public ResponseEntity<Blog> get(@PathVariable int id) {
-		System.out.println("-------------------------------------reached into controller--------------------------------------------");
+		
 		return new ResponseEntity<Blog>(blogDao.getBlog(id), HttpStatus.OK);
 	}
 
 	/*mapping to add blog to blog table*/
 	@PostMapping("/insert")
 	public ResponseEntity<DomainResponse> post(@RequestBody Blog blog){
-		System.out.println("-------------------------------------reached into controller1--------------------------------------------");
+		
 		blogDao.addBlog(blog);
-		System.out.println("-------------------------------blog adeed successfully--------------");
 		return new ResponseEntity<DomainResponse> (new DomainResponse("blog table recieved the data",100), HttpStatus.OK);
 	}
 	

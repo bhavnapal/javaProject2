@@ -13,7 +13,7 @@ public class MVCWebApplicationInitializer extends AbstractAnnotationConfigDispat
 
 	@Override
     protected Class[] getRootConfigClasses() {
-        return new Class[] {HibernateConfig.class};
+        return new Class[] {RootConfig.class,HibernateConfig.class};
     }
 
     @Override
