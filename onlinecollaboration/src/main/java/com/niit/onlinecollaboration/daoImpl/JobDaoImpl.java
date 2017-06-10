@@ -71,4 +71,10 @@ public class JobDaoImpl implements JobDao {
 		}
 	}
 
+	@Override
+	public List<Job> list(String status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

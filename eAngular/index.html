@@ -1,65 +1,82 @@
 <!doctype html>
-<html ng-app="myApp2" ng-controller="UserController as ctrl">
+<html ng-app="chatApp">
 <head>
     <title>Collaboration application</title>
-  </head>
+  
 <style type="text/css">
+html{
+	height:100%;
+}
+.buttonHolder{
+	position: absolute;
+	left:20%;
+}
+body {
+   position:relative;
+   height:100%;
+   overflow:hidden;
+}
 
-.page-footer{
-	bottom: 0px;
-	position: relative;
+.wrapper{
+	min-height:100%;
+	position:relative;
+}
+
+.content{
+	 padding-bottom:70px; /* height of footer */
+}
+
+footer{
+	margin:0;
+
+}
+.footer{
+	position:absolute;
+    bottom:10px;
+    height:70px;   
+    text-align: center;
 }
 
 </style>
-<body>
 
-	<!--<hr>-->
-
-	<!--<a href="#!/job">Job</a>-->
-	<!--<a href="#!/friend">Friend</a>-->
-	<!--<li><a href="#!/myProfile">profile</a></li>-->
-	<!--<li><a href="#!/blog">List Blog</a></li>-->
-	<!--<a href="#!/blog">Blog</a>-->
-	<!--<li><a href="#!/job">Search jobs</a></li>
-	<li><a href="#!/job">View Applied jobs</a></li>
-	<li><a href="#!/job">Post New Job</a></li>
-	<li> <a href="#!/update-user">Edit Profile</a></li>
-	<li><a href="#!/listchatforum">View Existing Forum</a></li>
-	<li><a href="#!/friend">Search Friend</a></li>
-	<li><a href="#!/friend">View Friend</a></li>
-	<li ><a href="#!/register">Sign Up<span style="font-size:16px;" class=" glyphicon glyphicon-registration-mark"></span></a></li>-->
-	<!--<a href="#!/register">signUp</a>-->
-	<!--<a href="#!/login">login</a>-->
-	<!--<ul class="nav navbar-nav navbar-right">-->
-    <!--<li ><a href="#!/login">Login<span style="font-size:16px;" class=" glyphicon glyphicon-log-in"></span></a></li>
-	<li ><a href="#/"ng-click="ctrl.logout()">Logout</a></li>-->
-		<!-- <li ng-show="currentUser.userid" ><a href="#/"ng-click="ctrl.logout()">Logout<span style="font-size:16px;" class=" glyphicon glyphicon-log-in"></span></a></li>-->
-	<!--</ul>	-->
-
-
-	<!--<div ng-include="'app/components/user/user-navbar.html'">
-	</div>-->
-	<!--</hr>-->
-
-	<!--<div ng-show="currentUser.role=='admin'" ng-include="'./app/components/user/admin-navbar.html'"></div>-->
-	<div ng-include="'./app/components/user/user-navbar.html'"></div>
-	
-
-	<div ng-view></div>
-<div ng-include="'./app/components/page/footer.html'"></div>
-</body>
- 
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-route/angular-route.js"></script> 
-<script src="./bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.js"></script>
 
 
 <script src="./app/app.js"></script>
-<script src="./app/components/user/UserController.js"></script>
+
 <script src="./app/components/user/UserServices.js"></script>
-<script src="./app/components/blog/BlogController.js"></script>
+<script src="./app/components/user/UserController.js"></script>
+
+<script src="./app/components/admin/AdminServices.js"></script>
+<script src="./app/components/admin/AdminController.js"></script>
+
+<script src="./app/components/user/LoginServices.js"></script>
+<script src="./app/components/user/LoginController.js"></script>
+
 <script src="./app/components/blog/BlogServices.js"></script>
-<script src="./app/components/job/JobController.js"></script>
+<script src="./app/components/blog/BlogController.js"></script>
+
 <script src="./app/components/job/JobServices.js"></script>
+<script src="./app/components/job/JobController.js"></script>
+
+<script src="./app/components/user/FriendServices.js"></script>
 <script src="./app/components/user/FriendController.js"></script>
+ </head>
+<body>
+	<div class="wrapper">
+	<!--<div ng-show="currentUser.role=='admin'" ng-include="'./app/components/user/admin-navbar.html'"></div>-->
+	 
+	<div class="header" ng-controller="MainController">
+		<div ng-include="'./app/components/user/user-navbar.html'"></div>
+		
+		<div class="content">
+			<div ng-view></div>
+		</div> 
+		
+		<div ng-include="'./app/components/page/footer.html'"></div>
+	</div>
+	</div>
+</body>
 </html>

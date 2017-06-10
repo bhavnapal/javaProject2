@@ -13,5 +13,6 @@ public interface JobDao {
 	boolean addJob(Job job);
 	boolean updateJob(Job job);
 	boolean deleteJob(Job job);
+	List<Job> list(String status);
 
 }

@@ -3,21 +3,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <body>
-<br>
-<br>
-<br>
-<br>
-<div >
-<div class="w3-container w3-orange" ng-controller="UserController as ctrl">
+<div class="w3-container w3-orange" ng-controller="AdminController as adminCtrl">
   <h1></h1>  
- <a  href="#!/manageusers">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="#!/adminhome">News</a>&nbsp;&nbsp;&nbsp;&nbsp;
+ <a  href="#!/manageUser">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
 	<a href="#!/sortjob">Sort Jobs</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="#!/post_job">Post Job</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="#!/listblog">Blogs</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="#!/sortblog">Sort Blogs</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="#!/rest">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;  
-        <a href="#" ng-click="ctrl.myProfile()">My Profile</a>
+  <a href="#!/myProfile" ng-click="userCtrl.myProfile()">My Profile</a>
 </div>
 
 <div class="w3-row-padding">

@@ -1,23 +1,13 @@
-<body>
 	<div name="updateuser">
-		<div class="generic-container" ng-controller="UserController as ctrl">
-
+	<div class="container" ng-controller="UserController as ctrl">
+		<div class="row">
+		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<span class="lead">My Profile </span>
 				</div>
 				<div class="formcontainer">
 					<form ng-submit="ctrl.update()" name="myForm" class="form-horizontal">
-
-						<div class="row">
-							<div class="form-group col-md-12">
-								<label class="col-md-2 control-lable" for="userId">ID</label>
-								<div class="col-md-7">
-									<input type="text" ng-model="currentUser.userId" id="userId" class="userId form-control input-sm" placeholder="Enter your ID"/>
-								</div>
-							</div>
-						</div>
-
 
 						<div class="row">
 							<div class="form-group col-md-12">
@@ -114,17 +104,13 @@
 						<div class="row">
 							<div class="form-actions floatRight">
 								<input type="submit" value="Update" class="btn btn-primary btn-sm">
-
+								<a href="#!/myProfile" class="btn btn-link">BACK</a>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
-
+		</div>
 		</div>
 	</div>
-
-
-</body>
-
-</html>
+	</div>

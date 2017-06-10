@@ -44,7 +44,7 @@ public class BlogDaoImpl implements BlogDao {
 	@Override
 	public boolean addBlog(Blog blog) {
 		try {			
-			sessionFactory.getCurrentSession().persist(blog);
+			sessionFactory.getCurrentSession().save(blog);
 			return true;
 		} catch (Exception ex) {
 			ex.printStackTrace();

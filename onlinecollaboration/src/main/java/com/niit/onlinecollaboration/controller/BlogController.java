@@ -5,14 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.onlinecollaboration.dao.BlogDao;
+import com.niit.onlinecollaboration.dao.UserDao;
 import com.niit.onlinecollaboration.model.Blog;
 import com.niit.onlinecollaboration.model.DomainResponse;
 import com.niit.onlinecollaboration.model.User_Detail;
@@ -20,39 +21,51 @@ import com.niit.onlinecollaboration.model.User_Detail;
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
-	
+
+	@Autowired
+	private UserDao userDao;
 	@Autowired
 	private BlogDao blogDao;
-	
-	/*mapping to get the list of blogs*/
+
+	/* mapping to get the list of blogs */
 	@RequestMapping("/all")
-	public ResponseEntity<List<Blog>> get(){
-		return new ResponseEntity<List<Blog>>(blogDao.list(),HttpStatus.OK);
+	public ResponseEntity<List<Blog>> get() {
+		return new ResponseEntity<List<Blog>>(blogDao.list(), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping("/all/{status}")
-	public ResponseEntity<List<Blog>> getByStatus(@PathVariable String status){
-		return new ResponseEntity<List<Blog>>(blogDao.getBlogsByStatus(status),HttpStatus.OK);
+	public ResponseEntity<List<Blog>> getByStatus(@PathVariable String status) {
+		return new ResponseEntity<List<Blog>>(blogDao.getBlogsByStatus(status), HttpStatus.OK);
 	}
-	
-	/*mapping to get the particular blog with id*/
+
+	/* mapping to get the particular blog with id */
 	@RequestMapping("/get/{id}")
 	public ResponseEntity<Blog> get(@PathVariable int id) {
-		
+
 		return new ResponseEntity<Blog>(blogDao.getBlog(id), HttpStatus.OK);
 	}
 
-	/*mapping to add blog to blog table*/
-	@PostMapping("/insert")
-	public ResponseEntity<DomainResponse> post(@RequestBody Blog blog){
-		
+	/* mapping to add blog to blog table */
+	@RequestMapping(value = { "/insert" }, method = RequestMethod.POST)
+	public ResponseEntity<DomainResponse> post(@RequestBody Blog blog) {
+
 		blogDao.addBlog(blog);
-		return new ResponseEntity<DomainResponse> (new DomainResponse("blog table recieved the data",100), HttpStatus.OK);
-	}
-	
-	@PostMapping("/update/{id}")
-	public ResponseEntity<DomainResponse> updateBlog(@RequestBody Blog blog,@PathVariable int id){
 		
+		int id = blog.getUserId();
+		User_Detail user = userDao.getUserDetail(id);
+		System.out.println("Adding blog now");
+		if (user.getRole().equals("Admin")) {
+			blog.setBlogStatus("APPROVED");
+		} else {
+			blog.setBlogStatus("PENDING");
+		}
+		return new ResponseEntity<DomainResponse>(new DomainResponse("blog table recieved the data", 100),
+				HttpStatus.OK);
+	}
+
+	@PostMapping("/update/{id}")
+	public ResponseEntity<DomainResponse> updateBlog(@RequestBody Blog blog, @PathVariable int id) {
+
 		Blog currentBlog = blogDao.getBlog(id);
 		currentBlog.setBlogId(blog.getBlogId());
 		currentBlog.setBlogName(blog.getBlogName());
@@ -64,18 +77,18 @@ public class BlogController {
 		currentBlog.setPostDate(blog.getPostDate());
 		currentBlog.setUserId(blog.getUserId());
 		currentBlog.setUserName(blog.getUserName());
-		
+
 		blogDao.updateBlog(currentBlog);
-		
-		return new ResponseEntity<DomainResponse> (new DomainResponse("blog is updated",100), HttpStatus.OK);
+
+		return new ResponseEntity<DomainResponse>(new DomainResponse("blog is updated", 100), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping("/delete/{id}")
 	public ResponseEntity<DomainResponse> deleteBlogById(@PathVariable int id) {
 		Blog blog = new Blog();
-		blog=blogDao.getBlog(id);
-		blogDao.deleteBlog(blog); 
-		return new ResponseEntity<DomainResponse>(new DomainResponse("deleted the data",100), HttpStatus.OK);
+		blog = blogDao.getBlog(id);
+		blogDao.deleteBlog(blog);
+		return new ResponseEntity<DomainResponse>(new DomainResponse("deleted the data", 100), HttpStatus.OK);
 
 	}
 

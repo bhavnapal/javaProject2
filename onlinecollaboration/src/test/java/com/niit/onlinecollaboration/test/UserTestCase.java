@@ -29,7 +29,7 @@ public class UserTestCase {
 	}
 	
 	
-	@Test
+	/*@Test
 	public void testAddServices(){
 		user = new User_Detail();
 		
@@ -50,7 +50,7 @@ public class UserTestCase {
 		user.setProfile("bhavna");
 		user.setBirthDate(LocalDate.parse("1995-05-01"));
 		assertEquals("Successfully added a product inside the table!",true,userDao.add(user));
-	}
+	}*/
 	
 	/*@Test
 	public void testGetServices(){

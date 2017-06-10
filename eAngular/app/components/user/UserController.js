@@ -1,17 +1,15 @@
-'use strict';
-
-app.controller(
-	'UserController',
-	[
+app.controller('UserController',[
 		'$scope',
-		'UserService',
+		'UserServices',
 		'$location',
 		'$rootScope',
 		'$cookieStore',
 		'$http',
-		function ($scope, UserService, $location, $rootScope, $cookieStore,$http) {
+		function ($scope, UserServices, $location, $rootScope, $cookieStore, $http) {
 			console.log("UserController...")
 			var self = this;
+			self.credentials = {};
+			self.authenticate = {};
 			self.user = {
 				userId: '',
 				name: '',
@@ -61,16 +59,14 @@ app.controller(
 					});
 			};
 
-			// self.fatchAllUsers();
+			// self.fetchAllUsers();
 
 			self.createUser = function (user) {
 				console.log("createUser...")
-				UserService
-					.createUser(user)
-					.then(
+				UserService.createUser(user).then(
 					function (d) {
 						alert("Thank you for registration.your user id is:" + user.userId)
-						$location.path("/")
+						$location.path("#!/login")
 					},
 					function (errResponse) {
 						console
@@ -146,62 +142,56 @@ app.controller(
 
 			self.update = function () {
 				{
-					console.log('Update the user details',
-						$rootScope.currentUser);
+					console.log('Update the user details', $rootScope.currentUser);
 					self.updateUser($rootScope.currentUser, );
 				}
 				self.reset();
 			};
 
-			self.authenticate = function (user) {
-				console.log("authenticate...")
-				UserService.authenticate(user)
-					.then(
+			/*			self.authenticate = function (user) {
+							console.log("authenticate...")
+							UserService.authenticate(user)
+								.then(
+								function (d) {
+			
+									self.user = d;
+			
+									console.log("Valid credentials. Navigating to home page")
+			
+									if (self.user.role == "staff") {
+										console.log("You are admin")
+										self.fetchAllUsers();
+			
+			
+			
+										console.log('Current user : ' + self.user)
+										$rootScope.currentUser = self.user
+										$cookieStore.put('currentUser', self.user);
+										//	$http.defaults.headers.common['Authorization'] = 'Basic '+ $rootScope.currentUser;
+										if ($rootScope.currentUser.role === "staff") {
+											$location.path('/adminhome');
+										}
+									}
+									else {
+										$location.path('/myhome');
+									}
+			
+								}
+			
+								);
+						};
+			
+						
+			*/
+			// self.fetchAllUsers(); //calling the method
 
-					function (d) {
+			// better to call fetchAllUsers -> after login ???
 
-						self.user = d;
-						//console.log("user.errorCode: "+ self.user.errorCode)
-						// if (self.user.errorCode == "404")
-
-						// {
-						// 	alert(self.user.errorMessage)
-
-						// 	self.user.id = "";
-						// 	self.user.password = "";
-
-						// } else { // valid
-						// credentials
-						console.log("Valid credentials. Navigating to home page")
-
-						if (self.user.role == "admin") {
-							console.log("You are admin")
-							self.fetchAllUsers();
-						}
-
-
-						console.log('Current user : ' + self.user)
-						$rootScope.currentUser = self.user
-						$cookieStore.put('currentUser', self.user);
-						//	$http.defaults.headers.common['Authorization'] = 'Basic '+ $rootScope.currentUser;
-						if ($rootScope.currentUser.role === "admin") {
-							$location
-								.path('/adminhome');
-						}
-
-						else {
-							$location.path('/myhome');
-						}
-
-					}
-
-					);
-			};
-
+//logout function
 			self.logout = function () {
 				console.log("logout")
 				alert("you have been successfully logged out")
-				//	$rootScope.currentUser = {};
+				
 				//	$cookieStore.remove('currentUser');
 				UserService.logout()
 				$location.path("/")
@@ -209,18 +199,51 @@ app.controller(
 
 			};
 
-			// self.fetchAllUsers(); //calling the method
+			//Method for user login 
+			self.login = function (response) {
 
-			// better to call fetchAllUsers -> after login ???
+				UserService.login(self.credentials).then(
 
-			self.login = function () {
-				{
-					console.log('login validation????????', self.user);
-					self.authenticate(self.user);
-				}
+					function (response) {
 
+						if (self.credentials.userName == null || self.credentials.password == null) {
+							self.error = true;
+							$rootScope.message = "Please provide both username and password";
+						}
+						else if (user.userName == null || user.password == null) {
+							self.error = true;
+							$rootScope.message = "Incorrect username or password";
+						} else if (user.status == 'PENDING') {
+							self.error = true;
+							$rootScope.message = "Apparently your registeration request is not approved yet!";
+						} else if (user.status == 'REJECT') {
+							self.error = true;
+							$rootScope.message = "Your registeration request has been rejected!";
+						} else {
+
+							//authenticate.setUserIsAuthenticated(true);
+							console.log(user);
+							UserService.setRole(user.role);
+							//$rootScope.authenticated = true;
+							$rootScope.message = "Welcome" + user.userName;
+							//authenticate.saveUser(user);
+							switch (user.role) {
+								case 'Employee':
+									self.isEmployer = true;
+									$location.path('/adminhome');
+									break;
+								case 'Guest':
+									self.isUser = true;
+									$location.path('/myhome');
+									break;
+								default:
+									$location.path('/myhome');
+							}
+							$rootScope.isLogin = true;
+						}
+					}
+				)
 			};
-
 			self.submit = function () {
 				{
 					console.log('Saving New User', self.user);

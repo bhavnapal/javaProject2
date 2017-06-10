@@ -1,32 +1,19 @@
-<body>
-	<div class="generic-container" ng-controller="UserController as ctrl">
+	<div class="container" >
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
 
-		<div class="panel panel-default">
+		<form role="form" novalidate method="post" ng-submit="regCtrl.regis()" name="form" class="form-horizontal">
+			<div class="panel panel-default" style="width: 600px">
 			<div class="panel-heading">
 				<span class="lead">User Registration Form </span>
-			</div>
-			<div class="formcontainer">
-				<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-
 				
-
-
+			</div>
+				<div class="container">
 					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="userId">ID</label>
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="uname">Name</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="ctrl.user.userId" id="userId" class="userid form-control input-sm" placeholder="Enter your ID"
-									required ng-minlength="3" />
-							</div>
-						</div>
-					</div>
-
-
-					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="uname">Name</label>
-							<div class="col-md-7">
-								<input type="text" ng-model="ctrl.user.name" id="name" class="username form-control input-sm" placeholder="Enter your name"
+								<input type="text" ng-model="regCtrl.user.name" id="name" class="username form-control input-sm" placeholder="Enter your name"
 									required ng-minlength="3" />
 							</div>
 						</div>
@@ -34,28 +21,22 @@
 
 
 				<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="registerAs">Register As:</label>
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="gender">Gender</label>
 							<div class="col-md-7"> 
-								<input type="radio"	name="role" value="guest" ng-model="ctrl.user.role">
-									User</input>
-								<!--</label> <label class="radio-inline"> <input type="radio"
-									name="role" value="alumni" ng-model="ctrl.user.role">
-									Alumni
-								</label> -->
-							
-								<input type="radio" name="role" value="employee" ng-model="ctrl.user.role">
-									Staff</input>
+								<input type="radio"	name="gender" value="M" ng-model="regCtrl.user.gender">
+									Male</input>
+								<input type="radio" name="gender" value="F" ng-model="regCtrl.user.gender">
+									Female</input>
 							</div>
 						</div>
-					</div>
+					</div>  
 
-
-					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="password">Password</label>
+				<div class="row">
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="uname">User Name</label>
 							<div class="col-md-7">
-								<input type="password" ng-model="ctrl.user.password" id="password" class="username form-control input-sm" placeholder="Enter your password"
+								<input type="text" ng-model="regCtrl.user.userName" id="userName" class="userName form-control input-sm" placeholder="Enter your user name"
 									required ng-minlength="3" />
 							</div>
 						</div>
@@ -63,10 +44,54 @@
 
 
 					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="email">Email</label>
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="password">Password</label>
 							<div class="col-md-7">
-								<input type="email" ng-model="ctrl.user.email" id="email" class="email form-control input-sm" placeholder="Enter your Email"
+								<input type="password" ng-model="regCtrl.user.password" id="password" class="username form-control input-sm" placeholder="Enter your password"
+									required ng-minlength="3" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="confirmPassword">Confirm Password</label>
+							<div class="col-md-7">
+								<input type="password" ng-model="regCtrl.user.confirmPassword" id="confirmPassword" class="password form-control input-sm" placeholder="Confirm your password"
+									required ng-minlength="3" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="email">Email</label>
+							<div class="col-md-7">
+								<input type="email" ng-model="regCtrl.user.email" id="email" class="email form-control input-sm" placeholder="Enter your Email"
+									required />
+
+							</div>
+						</div>
+					</div>
+
+				<div class="row">
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="registerAs">Role:</label>
+							<div class="col-md-7"> 
+								<input type="radio"	name="role" value="admin" ng-model="regCtrl.user.role">
+									Admin</input>
+								
+								<input type="radio" name="role" value="user" ng-model="regCtrl.user.role">
+									User</input>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="mobilel">Phone no.</label>
+							<div class="col-md-7">
+								<input type="tel" ng-model="regCtrl.user.phoneNo" id="phoneNo" class="mobile form-control input-sm" placeholder="Enter your contact number"
 									required />
 
 							</div>
@@ -74,63 +99,49 @@
 					</div>
 
 
-
 					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="mobilel">phone no.</label>
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="address">Address</label>
 							<div class="col-md-7">
-								<input type="tel" ng-model="ctrl.user.phoneNo" id="phoneNo" class="mobile form-control input-sm" placeholder="Enter your contact number"
-									required />
-
-							</div>
-						</div>
-					</div>
-
-
-					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="address">Address</label>
-							<div class="col-md-7">
-								<input type="text" width="100" height="50" ng-model="ctrl.user.address" id="address" class="form-control input-sm" placeholder="Enter your Address."
+								<input type="text" width="100" height="50" ng-model="regCtrl.user.address" id="address" class="form-control input-sm" placeholder="Enter your Address."
 								/>
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="city">City</label>
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="city">City</label>
 							<div class="col-md-7">
-								<input type="text" width="100" height="50" ng-model="ctrl.user.city" id="city" class="form-control input-sm" placeholder="Enter your city."
+								<input type="text" width="100" height="50" ng-model="regCtrl.user.city" id="city" class="form-control input-sm" placeholder="Enter your city."/>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label" for="state">State</label>
+							<div class="col-md-7">
+								<input type="text" width="100" height="50" ng-model="regCtrl.user.state" id="state" class="form-control input-sm" placeholder="Enter your state."
 								/>
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="state">State</label>
-							<div class="col-md-7">
-								<input type="text" width="100" height="50" ng-model="ctrl.user.state" id="state" class="form-control input-sm" placeholder="Enter your state."
-								/>
-							</div>
+						<div class="buttonHolder">
+							<input type="submit" value="register" class="btn btn-primary btn-sm">
+							<button type="button" ng-click="regCtrl.reset()" class="btn btn-warning btn-sm" >Reset Form</button><b>After registeration u can login</b>
 						</div>
+					
 					</div>
-
-
-
-					<div class="row">
-						<div class="form-actions floatRight">
-							<input type="submit" value="Register" class="btn btn-primary btn-sm">
-							<button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm">Reset Form</button>
-						</div>
 					</div>
-				</form>
+				</div>
+			</form>
+
+
 			</div>
-		</div>
-
+		</div>	
 	</div>
-	</div>
-
 
 </body>

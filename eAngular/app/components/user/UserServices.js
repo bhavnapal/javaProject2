@@ -1,14 +1,11 @@
-'use strict';
- 
-app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
+var UserModule=angular.module('UserModule',['ngCookies','ngRoute']); 
+UserModule.service('UserServices', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
 	
 	console.log("UserService...")
 	
-	var BASE_URL='http://localhost:8080/onlinecollaboration/user'
-		
-    return {
-         
-            fetchAllUsers: function() {
+	var BASE_URL='http://localhost:9090/onlinecollaboration/user'
+	
+           this. fetchAllUsers=function() {
             	console.log("calling fetchAllUsers ")
                     return $http.get(BASE_URL+'/all')
                             .then(
@@ -17,9 +14,10 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                     }, 
                                    null
                             );
+                             return deferred.promise;
             },
             
-            myProfile: function() {
+            this.myProfile= function() {
             	console.log("calling myProfile ")
                     return $http.get(BASE_URL+'/myProfile')
                             .then(
@@ -28,9 +26,10 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                     }, 
                                    null
                             );
+                             return deferred.promise;
             },
             
-            accept: function(id) {
+           this.accept= function(id) {
             	console.log("calling approve ")
                     return $http.get(BASE_URL+'/accept/'+id)
                             .then(
@@ -42,9 +41,10 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                        
                                     }
                             );
+                             return deferred.promise;
             },
             
-            reject: function(id) {
+            this.reject=function(id) {
             	console.log("calling reject ")
                     return $http.get(BASE_URL+'/reject/'+id)
                             .then(
@@ -53,11 +53,12 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                     }, 
                                     null
                             );
+                             return deferred.promise;
             },
              
-            createUser: function(user){
+            this.createUser=function(user){
             	console.log("calling create user")
-                    return $http.post(BASE_URL+'/insert', user) //1
+                    return $http.post(BASE_URL+'/insert', user) 
                             .then(
                                     function(response){
                                         return response.data;
@@ -69,7 +70,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                             );
             },
              
-            updateUser: function(user){
+            this.updateUser= function(user){
             	console.log("calling fetchAllUsers ")
                      return $http.put(BASE_URL+'/updateUser', user) 
                             .then(
@@ -84,7 +85,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
             },
              
               
-            logout: function(){
+            this.logout= function(){
             	console.log('logout....')
                 return $http.get(BASE_URL+'/logout')
                         .then(
@@ -93,22 +94,25 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                 }, 
                               null
                         );
+                         return deferred.promise;
         },
         
         
-            
-            authenticate: function(user){
+            this.login= function(user){
             	   console.log("Calling the method authenticate with the user :"+user)
-          		 
-                return $http.post('http://localhost:8080/onlinecollaboration/user/login',user)
+          		return $http.post(BASE_URL+'/login',user)
                         .then(
                                 function(response){
                                     return response.data;   //user json object
                                 }, 
-                               null
+                               function(errResponse){
+                                   console.error('error while login user');
+                                   return $q.reject(errResponse);
+                               }
                         );
-        }
+                         return deferred.promise;
+       }
          
-    };
+    }
  
-}]);
+]);

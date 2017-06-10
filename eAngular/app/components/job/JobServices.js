@@ -4,7 +4,7 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
 	
 	console.log("JobService...")
 	
-	var BASE_URL='http://localhost:8080/onlinecollaboration/job'
+	var BASE_URL='http://localhost:9090/onlinecollaboration/job'
 		
     return {
          

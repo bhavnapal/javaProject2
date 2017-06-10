@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-//@EnableWebMvc
+@EnableWebMvc
 @ComponentScan("com.niit.onlinecollaboration")
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	 // Configuration to load the static resources   
@@ -34,4 +34,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer){
       configurer.enable();
     }  
+     
+ 
 }

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,8 +19,8 @@ public class Blog implements Serializable{
 
 	private static final long serialVersionUID = 8902970462892867386L;
 
-	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int blogId;
 	public int getBlogId() {
 		return blogId;
@@ -95,6 +97,7 @@ public class Blog implements Serializable{
 	private int userId;
 	@Column(name="User_Name")
 	private String userName;
+	
 	
 	/*@OneToMany(mappedBy="blog", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonManagedReference

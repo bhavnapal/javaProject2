@@ -2,7 +2,8 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
  </head>
-<section id="header" ng-controller="UserController as ctrl">
+ <body>
+<section id="header" ng-controller="AdminController as adminCtrl">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="row">
@@ -27,7 +28,8 @@
                                     <ul class="nav navbar-nav navbar-right navbar-form">
                                         <li>
                                             <a href="#" class="account-access-btn">
-                                                <span><img class="img-circle" src="" /></span>&nbsp;&nbsp;<span class="account-access-btn-name">{{currentUser.name}}</span>
+                                                <span><img class="img-circle" src="" /></span>&nbsp;&nbsp;
+                                                <span class="account-access-btn-name">{{currentUser.name}}</span>
                                             </a>
                                         </li>
                                         <li>
@@ -46,3 +48,4 @@
     <br>
     <br>
     <br>
+ </body>
